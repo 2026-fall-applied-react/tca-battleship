@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import './App.css'
+import { Header } from './components/header'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
 
-    <div className="p-4">
+<div className="App" data-theme="luxury">
+      <Header />
+      <div className="p-4">
           <h1 className="text-3xl font-bold">Get started</h1>
           <p>
             Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
@@ -18,19 +21,27 @@ function App() {
         >
           Count is {count}
         </button>
-
-<div className="card bg-base-100 w-full shadow-sm">
-  <div className="card-body">
-    <h2 className="card-title">Card title!</h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
+      <div className="hover-3d">
+      <div className="card bg-base-100 w-full shadow-sm">
+        <div className="card-body">
+          <h2 className="card-title">Card title!</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <div className="card-actions justify-end">
+            <button className="btn btn-primary">Buy Now</button>
+          </div>
+          <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      </div>
+      </div>
+      </div>
 </div>
-
-
-        </div>
         
   )
 }
