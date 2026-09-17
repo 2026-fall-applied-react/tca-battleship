@@ -13,7 +13,7 @@ function App() {
           </p>
         <button
           type="button"
-          className="btn btn-primary btn-lg"
+          className="btn btn-primary btn-lg btn-soft"
           onClick={() => setCount((count) => count + 1)}
         >
           Count is {count}
