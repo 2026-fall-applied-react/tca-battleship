@@ -1,4 +1,3 @@
-import '../App.css'
+import '../App.css' 
 
-export const NavBar = () => (<input type="checkbox" value="synthwave" className="toggle theme-controller" />
-)
+export const NavBar = () => (<div className="navbar"><input type="checkbox" value="synthwave" className="toggle theme-controller" /></div>)
