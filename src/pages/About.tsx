@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 export const About = () => {
     const nav = useNavigate();
     return (
+        
         <div>
             <h1>About</h1>
             <button 
