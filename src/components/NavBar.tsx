@@ -1,10 +1,19 @@
 import '../App.css';
 
-export const NavBar = () => (
+interface NavBarProps {
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
+}
+
+export const NavBar = ({ theme, onToggleTheme }: NavBarProps) => (
   <div className="flex justify-end">
     <label className="swap swap-rotate">
-  {/* this hidden checkbox controls the state */}
-  <input type="checkbox" className="theme-controller" value="synthwave" />
+  <input
+    type="checkbox"
+    checked={theme === 'dark'}
+    onChange={onToggleTheme}
+    aria-label="Toggle dark theme"
+  />
 
   {/* sun icon */}
   <svg

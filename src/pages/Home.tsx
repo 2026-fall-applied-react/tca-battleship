@@ -1,12 +1,17 @@
 import { useNavigate } from "react-router";
 import { NavBar } from "../components/NavBar.tsx";
 
-export const Home = () => {
+interface HomeProps {
+    theme: 'light' | 'dark';
+    onToggleTheme: () => void;
+}
+
+export const Home = ({ theme, onToggleTheme }: HomeProps) => {
     const nav = useNavigate();
 
     return (
         <>
-            <NavBar />
+            <NavBar theme={theme} onToggleTheme={onToggleTheme} />
             <div>
                 <h1>Home</h1>
                 <button

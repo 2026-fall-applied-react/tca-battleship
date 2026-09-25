@@ -1,23 +1,30 @@
+import { useState } from 'react'
 import './App.css'
-import { 
+import {
   Routes,
   Route,
-  HashRouter 
+  HashRouter
 } from "react-router";
 import { Home } from './pages/Home.tsx'
 import { About } from './pages/About.tsx'
 import { Play } from './pages/Play.tsx'
 
 const App = () => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+
+  const toggleTheme = () => {
+    setTheme((current) => (current === 'light' ? 'dark' : 'light'))
+  }
+
   return (
-    <div className="p-4">
+    <div className="p-4" data-theme={theme}>
       <HashRouter>
         <Routes>
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
-            <Home />
-            } 
+            <Home theme={theme} onToggleTheme={toggleTheme} />
+            }
           />
           <Route
             path="/about"
