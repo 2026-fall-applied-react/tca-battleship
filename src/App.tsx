@@ -33,13 +33,15 @@ const App = () => {
     setPlayers(loadPlayers())
   }, [])
 
+
   const toggleTheme = () => {
     setTheme((current) => (current === 'light' ? 'dark' : 'light'))
   }
 
   const addPlayer = (name: string) => {
     const newPlayer: Player = {
-      id: Math.random().toString(),
+      id: crypto.randomUUID(),
+      //id: Math.random().toString(),
       name,
     }
 
@@ -52,7 +54,8 @@ const App = () => {
       return updated
     })
   }
-console.log(addPlayer);
+
+      //console.log(addPlayer);
 
   return (
     <div className="p-4" data-theme={theme}>
