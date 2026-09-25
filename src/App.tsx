@@ -9,11 +9,13 @@ import { Home } from './pages/Home.tsx'
 import { About } from './pages/About.tsx'
 import { Play } from './pages/Play.tsx'
 import { Setup } from './pages/Setup.tsx'
+import type { Player } from './types.ts'
 
 const THEME_STORAGE_KEY = 'tca-battleship:theme'
 
 const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [players, setPlayers] = useState<Player[]>([])
 
   useEffect(() => {
     const saved = localStorage.getItem(THEME_STORAGE_KEY)
@@ -28,6 +30,14 @@ const App = () => {
 
   const toggleTheme = () => {
     setTheme((current) => (current === 'light' ? 'dark' : 'light'))
+  }
+
+  const addPlayer = (name: string) => {
+    const newPlayer: Player = {
+      id: crypto.randomUUID(),
+      name,
+    }
+    setPlayers((current) => [...current, newPlayer])
   }
 
   return (
@@ -55,7 +65,7 @@ const App = () => {
           <Route
             path="/setup"
             element={
-              <Setup />
+              <Setup players={players} onAddPlayer={addPlayer} />
             }
           />
         </Routes>
