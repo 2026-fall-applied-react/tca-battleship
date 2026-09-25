@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import type { Player } from '../types';
 
-export const Setup = () => {
+interface SetupProps {
+    players: Player[];
+    onAddPlayer: (name: string) => void;
+}
+
+export const Setup = ({ players, onAddPlayer }: SetupProps) => {
     const [playerName, setPlayerName] = useState('');
-
-    const [players, setPlayers] = useState<string[]>([]);
 
     const addPlayer = () => {
         const trimmed = playerName.trim();
         if (trimmed === '') return;
-
-        setPlayers((current) => [...current, trimmed]);
+        onAddPlayer(trimmed);
         setPlayerName('');
     };
 
@@ -30,9 +33,9 @@ export const Setup = () => {
             </div>
 
             <ul className="mt-6 space-y-1">
-                {players.map((name, index) => (
-                    <li key={index} className="px-3 py-2 rounded bg-base-200">
-                        {name}
+                {players.map((player) => (
+                    <li key={player.id} className="px-3 py-2 rounded bg-base-200">
+                        {player.name}
                     </li>
                 ))}
             </ul>
