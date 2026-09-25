@@ -8,6 +8,7 @@ import {
 import { Home } from './pages/Home.tsx'
 import { About } from './pages/About.tsx'
 import { Play } from './pages/Play.tsx'
+import { Setup } from './pages/Setup.tsx'
 
 const THEME_STORAGE_KEY = 'tca-battleship:theme'
 
@@ -50,6 +51,12 @@ const App = () => {
             element={
               <Play />
             } 
+          />
+          <Route
+            path="/setup"
+            element={
+              <Setup />
+            }
           />
         </Routes>
       </HashRouter>
