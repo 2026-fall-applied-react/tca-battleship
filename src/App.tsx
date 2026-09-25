@@ -10,6 +10,7 @@ import { About } from './pages/About.tsx'
 import { Play } from './pages/Play.tsx'
 import { Setup } from './pages/Setup.tsx'
 import type { Player } from './types.ts'
+import { loadPlayers, savePlayers } from './storage.ts'
 
 const THEME_STORAGE_KEY = 'tca-battleship:theme'
 
@@ -28,17 +29,30 @@ const App = () => {
     localStorage.setItem(THEME_STORAGE_KEY, theme)
   }, [theme])
 
+  useEffect(() => {
+    setPlayers(loadPlayers())
+  }, [])
+
   const toggleTheme = () => {
     setTheme((current) => (current === 'light' ? 'dark' : 'light'))
   }
 
   const addPlayer = (name: string) => {
     const newPlayer: Player = {
-      id: crypto.randomUUID(),
+      id: Math.random().toString(),
       name,
     }
-    setPlayers((current) => [...current, newPlayer])
+
+    setPlayers((current) => {
+      console.log('Current players:', current)
+      const updated = [...current, newPlayer]
+      console.log('Adding new player:', newPlayer)
+      savePlayers(updated)
+      console.log('Updated players:', updated)
+      return updated
+    })
   }
+console.log(addPlayer);
 
   return (
     <div className="p-4" data-theme={theme}>
