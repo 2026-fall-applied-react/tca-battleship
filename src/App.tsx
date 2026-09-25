@@ -46,11 +46,11 @@ const App = () => {
     }
 
     setPlayers((current) => {
-      console.log('Current players:', current)
+      //console.log('Current players:', current)
       const updated = [...current, newPlayer]
-      console.log('Adding new player:', newPlayer)
+      //console.log('Adding new player:', newPlayer)
       savePlayers(updated)
-      console.log('Updated players:', updated)
+      //console.log('Updated players:', updated)
       return updated
     })
   }
