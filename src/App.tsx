@@ -11,6 +11,7 @@ import { Play } from './pages/Play.tsx'
 import { Setup } from './pages/Setup.tsx'
 import type { Player } from './types.ts'
 import { loadPlayers, savePlayers } from './storage.ts'
+import { Layout } from './components/Layout.tsx'
 
 const THEME_STORAGE_KEY = 'tca-battleship:theme'
 
@@ -50,7 +51,7 @@ const App = () => {
       const updated = [...current, newPlayer]
       //console.log('Adding new player:', newPlayer)
       savePlayers(updated)
-      //console.log('Updated players:', updated)
+      console.log('Updated players:', updated)
       return updated
     })
   }
@@ -61,30 +62,12 @@ const App = () => {
     <div className="p-4" data-theme={theme}>
       <HashRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-            <Home theme={theme} onToggleTheme={toggleTheme} />
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <About />
-            }
-          />
-          <Route 
-            path="/play" 
-            element={
-              <Play />
-            } 
-          />
-          <Route
-            path="/setup"
-            element={
-              <Setup players={players} onAddPlayer={addPlayer} />
-            }
-          />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home theme={theme} onToggleTheme={toggleTheme} />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/play" element={<Play />} />
+            <Route path="/setup" element={<Setup players={players} onAddPlayer={addPlayer} />} />
+          </Route>
         </Routes>
       </HashRouter>
     </div>        

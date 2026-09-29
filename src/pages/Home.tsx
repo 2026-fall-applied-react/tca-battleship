@@ -1,9 +1,6 @@
 import { NavBar } from "../components/NavBar.tsx";
+import type { HomeProps } from '../types';
 
-interface HomeProps {
-    theme: 'light' | 'dark';
-    onToggleTheme: () => void;
-}
 
 export const Home = ({ theme, onToggleTheme }: HomeProps) => {
     return (
