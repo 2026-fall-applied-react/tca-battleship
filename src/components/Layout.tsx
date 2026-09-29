@@ -1,5 +1,16 @@
 import { Outlet } from 'react-router';
+import { NavBar } from './NavBar.tsx';
 
-export const Layout = () => {
-    return <Outlet />;
+interface LayoutProps {
+    theme: 'light' | 'dark';
+    onToggleTheme: () => void;
+}
+
+export const Layout = ({ theme, onToggleTheme }: LayoutProps) => {
+    return (
+        <>
+            <NavBar theme={theme} onToggleTheme={onToggleTheme} />
+            <Outlet />
+        </>
+    );
 };

@@ -61,9 +61,9 @@ const App = () => {
   return (
     <div className="p-4" data-theme={theme}>
       <HashRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home theme={theme} onToggleTheme={toggleTheme} />} />
+        <Routes>          
+          <Route element={<Layout theme={theme} onToggleTheme={toggleTheme} />}>
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/play" element={<Play />} />
             <Route path="/setup" element={<Setup players={players} onAddPlayer={addPlayer} />} />
