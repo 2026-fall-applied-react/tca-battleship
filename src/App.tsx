@@ -9,9 +9,11 @@ import { Home } from './pages/Home.tsx'
 import { About } from './pages/About.tsx'
 import { Play } from './pages/Play.tsx'
 import { Setup } from './pages/Setup.tsx'
+import { Leaderboard } from './pages/Leaderboard.tsx'
 import type { Player } from './types.ts'
 import { loadPlayers, savePlayers } from './storage.ts'
 import { Layout } from './components/Layout.tsx'
+import { GameResult } from './pages/GameResults.ts'
 
 const THEME_STORAGE_KEY = 'tca-battleship:theme'
 
@@ -58,15 +60,50 @@ const App = () => {
 
       //console.log(addPlayer);
 
+      const dummyGameResults: GameResult[] = [
+        {
+            winner: "Bryson",
+            players: [
+                "Zack",
+                "Bryson",
+                "Tom",
+            ],
+        },
+        {
+            winner: "Bryson",
+            players: [
+                "Bryson",
+                "Tom",
+                "Suzzie",
+            ],
+        },
+        {
+            winner: "Zack",
+            players: [
+                "Zack",
+                "Suzzie",
+            ]
+        },
+        {
+            winner: "John",
+            players: [
+                "John",
+                "Tom",
+            ],
+        },
+    ];
+
   return (
     <div className="p-4" data-theme={theme}>
       <HashRouter>
         <Routes>          
-          <Route element={<Layout theme={theme} onToggleTheme={toggleTheme} />}>
+          <Route element={<Layout theme={theme} onToggleTheme={toggleTheme} players={players} onAddPlayer={addPlayer} />
+              }>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/play" element={<Play />} />
-            <Route path="/setup" element={<Setup players={players} onAddPlayer={addPlayer} />} />
+            <Route path="/setup" element={<Setup />} />
           </Route>
         </Routes>
       </HashRouter>

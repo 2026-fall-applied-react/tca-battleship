@@ -1,19 +1,24 @@
 import { useState } from 'react';
-import type { Player } from '../types';
+import { useNavigate, useOutletContext } from 'react-router';
+import type { AppOutletContext } from '../types';
 
-interface SetupProps {
-    players: Player[];
-    onAddPlayer: (name: string) => void;
-}
-
-export const Setup = ({ players, onAddPlayer }: SetupProps) => {
+export const Setup = () => {
+    const nav = useNavigate();
+    const { players, onAddPlayer } = useOutletContext<AppOutletContext>();
     const [playerName, setPlayerName] = useState('');
 
     const addPlayer = () => {
         const trimmed = playerName.trim();
         if (trimmed === '') return;
+
+        const isFirstPlayer = players.length === 0;
+
         onAddPlayer(trimmed);
         setPlayerName('');
+
+        if (isFirstPlayer) {
+            nav('/play');
+        }
     };
 
     return (

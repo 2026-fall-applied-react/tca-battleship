@@ -12,6 +12,7 @@ export const NavBar = ({ theme, onToggleTheme }: NavBarProps) => (
       <Link to="/">Home</Link>
       <Link to="/setup">Setup</Link>
       <Link to="/play">Play</Link>
+      <Link to="/Leaderboard">Leaderboard</Link>
       <Link to="/about">About</Link>
     </nav>
   <div className="flex justify-end">
