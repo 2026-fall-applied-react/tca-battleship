@@ -13,9 +13,44 @@ import { Leaderboard } from './pages/Leaderboard.tsx'
 import type { Player } from './types.ts'
 import { loadPlayers, savePlayers } from './storage.ts'
 import { Layout } from './components/Layout.tsx'
-import { GameResult } from './pages/GameResults.ts'
+import type { GameResult } from './pages/GameResults.ts'
+import { getLeaderboard } from './pages/GameResults.ts'
 
 const THEME_STORAGE_KEY = 'tca-battleship:theme'
+
+      const dummyGameResults: GameResult[] = [
+        {
+            winner: "Bryson",
+            players: [
+                "Zack",
+                "Bryson",
+                "Tom",
+            ],
+        },
+        {
+            winner: "Bryson",
+            players: [
+                "Bryson",
+                "Tom",
+                "Suzzie",
+            ],
+        },
+        {
+            winner: "Zack",
+            players: [
+                "Zack",
+                "Suzzie",
+            ]
+        },
+        {
+            winner: "John",
+            players: [
+                "John",
+                "Tom",
+            ],
+        },
+    ];
+
 
 const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
@@ -60,38 +95,8 @@ const App = () => {
 
       //console.log(addPlayer);
 
-      const dummyGameResults: GameResult[] = [
-        {
-            winner: "Bryson",
-            players: [
-                "Zack",
-                "Bryson",
-                "Tom",
-            ],
-        },
-        {
-            winner: "Bryson",
-            players: [
-                "Bryson",
-                "Tom",
-                "Suzzie",
-            ],
-        },
-        {
-            winner: "Zack",
-            players: [
-                "Zack",
-                "Suzzie",
-            ]
-        },
-        {
-            winner: "John",
-            players: [
-                "John",
-                "Tom",
-            ],
-        },
-    ];
+
+      const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
 
   return (
     <div className="p-4" data-theme={theme}>
@@ -99,7 +104,13 @@ const App = () => {
         <Routes>          
           <Route element={<Layout theme={theme} onToggleTheme={toggleTheme} players={players} onAddPlayer={addPlayer} />
               }>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home 
+            leaderboard={
+              getLeaderboard(gameResults)
+            }
+            />
+            } 
+            />
             <Route path="/about" element={<About />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/play" element={<Play />} />
