@@ -57,7 +57,10 @@ const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [players, setPlayers] = useState<Player[]>([])
   const [title, setTitle] = useState(APP_TITLE);
-
+  const toggleTheme = () => {
+    setTheme((current) => (current === 'light' ? 'dark' : 'light'))
+  }
+  
   useEffect(() => {
     const saved = localStorage.getItem(THEME_STORAGE_KEY)
     if (saved === 'light' || saved === 'dark') {
@@ -74,9 +77,7 @@ const App = () => {
   }, [])
 
 
-  const toggleTheme = () => {
-    setTheme((current) => (current === 'light' ? 'dark' : 'light'))
-  }
+
 
   const addPlayer = (name: string) => {
     const newPlayer: Player = {

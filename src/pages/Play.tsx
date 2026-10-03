@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import type { CellState, GameResult, Grid } from "../types";
 import { BattleshipGrid } from "../components/BattleshipGrid.tsx";
 import { cycleCell } from "../gridLogic";
+import { loadGrid, saveGrid } from "../storage";
 
 const GRID_SIZE = 10;
 
@@ -20,13 +21,19 @@ export const Play = ({ addNewGameResult }: PlayProps) => {
         []
     )
     const nav = useNavigate();
-    const [grid, setGrid] = useState<Grid>(makeEmptyGrid);
+    const [grid, setGrid] = useState<Grid>(() => loadGrid() ?? makeEmptyGrid());
+
+    useEffect(() => {
+    saveGrid(grid);
+}, [grid]);
 
     const handleCellClick = (row: number, col: number) => {
         console.log(`Cell clicked: row ${row}, col ${col}`);
         const index = row * GRID_SIZE + col;
         setGrid((currentGrid) => cycleCell(currentGrid, index));
     };
+
+    
 
     return (
         <div>

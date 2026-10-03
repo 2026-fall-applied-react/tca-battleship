@@ -21,6 +21,16 @@ export const Setup = () => {
         }
     };
 
+    const handleClearAndRefresh = () => {
+        localStorage.clear();
+        // localStorage.removeItem('tca-battleship:grid');
+        // localStorage.removeItem('tca-battleship:players');
+        // localStorage.removeItem('tca-battleship:theme');
+        window.location.reload(); 
+        console.log('Local storage cleared and page refreshed.');
+    };
+
+
     return (
         <div className="max-w-md mx-auto mt-12">
             <h1 className="text-2xl font-bold mb-4">Setup</h1>
@@ -46,9 +56,7 @@ export const Setup = () => {
             </ul>
             <div className="flex justify-center items-center p-2 mt-4">
                 <button type="button" className="btn btn-primary"
-                    onClick={
-                        () => localStorage.clear()
-                    }
+                    onClick={handleClearAndRefresh} 
                 >
                     Reset (dev only)
                 </button>

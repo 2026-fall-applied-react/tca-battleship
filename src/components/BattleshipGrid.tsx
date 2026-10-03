@@ -8,7 +8,7 @@ interface BattleshipGridProps {
 }
 
 export const BattleshipGrid = ({ grid, onCellClick }: BattleshipGridProps) => (
-    <div className="grid grid-cols-10 gap-1 w-fit mx-auto mt-8 aura aura-holo">
+    <div className="grid grid-cols-10 gap-1 w-fit mx-auto mt-8 aura aura-xs text-green-500">
         {Array.from({ length: GRID_SIZE }).map((_, row) =>
             Array.from({ length: GRID_SIZE }).map((_, col) => {
                 const index = row * GRID_SIZE + col;
