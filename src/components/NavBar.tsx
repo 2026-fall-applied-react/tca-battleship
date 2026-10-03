@@ -2,20 +2,14 @@ import { Link } from 'react-router';
 import '../App.css';
 
 interface NavBarProps {
+  title: string;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
 }
 
-export const NavBar = ({ theme, onToggleTheme }: NavBarProps) => (
-  <div className="flex justify-between items-center p-2">
-    <nav className="flex gap-4">
-      <Link to="/">Home</Link>
-      <Link to="/setup">Setup</Link>
-      <Link to="/play">Play</Link>
-      <Link to="/Leaderboard">Leaderboard</Link>
-      <Link to="/about">About</Link>
-    </nav>
-  <div className="flex justify-end">
+export const NavBar = ({ title, theme, onToggleTheme }: NavBarProps) => (
+  <div className="bg-base-100 shadow-sm flex flex-col">
+    <div className="flex justify-end">
     <label className="swap swap-rotate">
   <input
     type="checkbox"
@@ -43,5 +37,18 @@ export const NavBar = ({ theme, onToggleTheme }: NavBarProps) => (
   </svg>
 </label>
   </div>
+
+    <div className="navbar justify-center p-2">
+      <p className="text-3xl font-bold mb-4">{title}</p>
+    </div>
+    <div className="flex justify-center items-center p-2">
+    <nav className="flex gap-4">
+      <Link to="/">Home</Link>
+      <Link to="/setup">Setup</Link>
+      <Link to="/play">Play</Link>
+      <Link to="/leaderboard">Leaderboard</Link>
+      <Link to="/about">About</Link>
+    </nav>
+    </div>
   </div>
 );

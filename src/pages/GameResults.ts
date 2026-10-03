@@ -1,22 +1,10 @@
+
+import type { LeaderboardEntry, GameResult } from "../types";
+
+
 //types
 
-    export type GameResult = {
-        winner: string;
-        players: string[];
 
-        // If only four players max...
-        // playerOne: string;
-        // playerTwo: string;
-        // playerThree: string;
-        // plaeryFour: string;
-    };
-
-    export type LeaderboardEntry = {
-        wins: number;
-        losses: number;
-        avg: number; // we'll need to make a string for rounding and display...
-        player: string;
-    };
 
 
 
@@ -48,19 +36,12 @@ export const getLeaderboard = (
                         // they maintained that avg for more games so higher ranked
                         : (b.wins + b.losses) - (a.wins + a.losses)
             )
-        )
-    ;
-
-
-
-
-
-
+        );
 
 
 //Helper funcs
 
-    const getLeaderboarEntry = (
+    export const getLeaderboarEntry = (
         games: GameResult[],
         player: string,
     ): LeaderboardEntry => {
@@ -86,7 +67,7 @@ export const getLeaderboard = (
     };
 
 
-    const getPreviousPlayers = (
+    export const getPreviousPlayers = (
         games: GameResult[],
     ): string[] => games
 

@@ -9,16 +9,16 @@ import { Home } from './pages/Home.tsx'
 import { About } from './pages/About.tsx'
 import { Play } from './pages/Play.tsx'
 import { Setup } from './pages/Setup.tsx'
-import { Leaderboard } from './pages/Leaderboard.tsx'
-import type { Player } from './types.ts'
+import { PlayerDetail } from './pages/PlayerDetails.tsx'
+import { LeaderboardProp } from './pages/Leaderboard.tsx'
+import { APP_TITLE, type GameResult, type Player } from "./types";
 import { loadPlayers, savePlayers } from './storage.ts'
 import { Layout } from './components/Layout.tsx'
-import type { GameResult } from './pages/GameResults.ts'
 import { getLeaderboard } from './pages/GameResults.ts'
 
-const THEME_STORAGE_KEY = 'tca-battleship:theme'
+  const THEME_STORAGE_KEY = 'tca-battleship:theme'
 
-      const dummyGameResults: GameResult[] = [
+  const dummyGameResults: GameResult[] = [
         {
             winner: "Bryson",
             players: [
@@ -53,8 +53,10 @@ const THEME_STORAGE_KEY = 'tca-battleship:theme'
 
 
 const App = () => {
+
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [players, setPlayers] = useState<Player[]>([])
+  const [title, setTitle] = useState(APP_TITLE);
 
   useEffect(() => {
     const saved = localStorage.getItem(THEME_STORAGE_KEY)
@@ -96,25 +98,21 @@ const App = () => {
       //console.log(addPlayer);
 
 
-      const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+      const [gameResults] = useState<GameResult[]>(dummyGameResults);
 
   return (
     <div className="p-4" data-theme={theme}>
+      
       <HashRouter>
         <Routes>          
-          <Route element={<Layout theme={theme} onToggleTheme={toggleTheme} players={players} onAddPlayer={addPlayer} />
-              }>
-            <Route path="/" element={<Home 
-            leaderboard={
-              getLeaderboard(gameResults)
-            }
-            />
-            } 
-            />
+          <Route element={<Layout title={title} theme={theme} onToggleTheme={toggleTheme} players={players} onAddPlayer={addPlayer} />}>
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/play" element={<Play />} />
+            <Route path="/leaderboard" element={<LeaderboardProp leaderboard={getLeaderboard(gameResults)} setTitle={setTitle} />} />
+            <Route path="/play" element={<Play />} />            
             <Route path="/setup" element={<Setup />} />
+            <Route path="/player/:id" element={<PlayerDetail />} />
+          
           </Route>
         </Routes>
       </HashRouter>

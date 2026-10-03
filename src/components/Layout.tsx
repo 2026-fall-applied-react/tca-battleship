@@ -3,16 +3,17 @@ import { NavBar } from './NavBar.tsx';
 import type { Player } from '../types.ts';
 
 interface LayoutProps {
+    title: string;
     theme: 'light' | 'dark';
     onToggleTheme: () => void;
     players: Player[];
     onAddPlayer: (name: string) => void;
 }
 
-export const Layout = ({ theme, onToggleTheme, players, onAddPlayer }: LayoutProps) => {
+export const Layout = ({ title, theme, onToggleTheme, players, onAddPlayer }: LayoutProps) => {
     return (
         <>
-            <NavBar theme={theme} onToggleTheme={onToggleTheme} />
+            <NavBar title={title} theme={theme} onToggleTheme={onToggleTheme} />
             <Outlet context={{ players, onAddPlayer }} />
         </>
     );
