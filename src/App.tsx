@@ -98,7 +98,10 @@ const App = () => {
       //console.log(addPlayer);
 
 
-      const [gameResults] = useState<GameResult[]>(dummyGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+
+   const addNewGameResult = (newGameResult: GameResult) => setGameResults([...gameResults, newGameResult]);
+
 
   return (
     <div className="p-4" data-theme={theme}>
@@ -109,7 +112,16 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/leaderboard" element={<LeaderboardProp leaderboard={getLeaderboard(gameResults)} setTitle={setTitle} />} />
-            <Route path="/play" element={<Play />} />            
+            <Route
+                            path="/play"
+                            element={
+                                <Play
+                                    addNewGameResult={
+                                        addNewGameResult
+                                    }
+                                />
+                            }
+                        />
             <Route path="/setup" element={<Setup />} />
             <Route path="/player/:id" element={<PlayerDetail />} />
           

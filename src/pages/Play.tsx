@@ -1,24 +1,55 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import type { CellState, Grid } from "../types";
+import type { CellState, GameResult, Grid } from "../types";
 import { BattleshipGrid } from "../components/BattleshipGrid.tsx";
+import { cycleCell } from "../gridLogic";
 
 const GRID_SIZE = 10;
 
-const staticGrid: Grid = Array<CellState>(GRID_SIZE * GRID_SIZE).fill('empty');
+const makeEmptyGrid = (): Grid => Array<CellState>(GRID_SIZE * GRID_SIZE).fill('empty');
 
-export const Play = () => {
+type PlayProps = {
+    addNewGameResult : (r : GameResult) => void
+}
+
+export const Play = ({ addNewGameResult }: PlayProps) => {
+    useEffect(
+        () => {
+        },
+
+        []
+    )
     const nav = useNavigate();
+    const [grid, setGrid] = useState<Grid>(makeEmptyGrid);
+
+    const handleCellClick = (row: number, col: number) => {
+        console.log(`Cell clicked: row ${row}, col ${col}`);
+        const index = row * GRID_SIZE + col;
+        setGrid((currentGrid) => cycleCell(currentGrid, index));
+    };
+
     return (
         <div>
-            <h1>Play</h1>
-            <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => nav('/')}
-            >
-                Go Home
-            </button>
+            <h1 className="flex justify-center items-center p-2">Play</h1>
+            
 
-            <BattleshipGrid grid={staticGrid} />
+            <BattleshipGrid grid={grid} onCellClick={handleCellClick} />
+            <div className="flex justify-center items-center p-2">
+            <button
+                className="btn btn-soft btn-lg mt-3 w-full lg:w-64"
+                onClick={
+                    () => {
+                        addNewGameResult({
+                            winner: "Bryson",
+                            players: ["Bryson", "Tom"],
+                        })
+                        nav('/leaderboard');
+                    }
+                }
+            >
+                Game Over
+            </button>
+            </div>
         </div>
     )
 };

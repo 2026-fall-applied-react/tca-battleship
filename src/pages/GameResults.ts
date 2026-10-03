@@ -1,6 +1,8 @@
 
 import type { LeaderboardEntry, GameResult } from "../types";
 
+//Types and Interfaces
+
 
 //Public funcs
 

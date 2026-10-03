@@ -44,6 +44,15 @@ export const Setup = () => {
                     </li>
                 ))}
             </ul>
+            <div className="flex justify-center items-center p-2 mt-4">
+                <button type="button" className="btn btn-primary"
+                    onClick={
+                        () => localStorage.clear()
+                    }
+                >
+                    Reset (dev only)
+                </button>
+            </div>
         </div>
     );
 };
