@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 import '../App.css';
 
 interface NavBarProps {
@@ -6,6 +6,10 @@ interface NavBarProps {
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
 }
+
+
+const linkClassName = ({ isActive }: { isActive: boolean }) =>
+  isActive ? 'font-bold underline' : '';
 
 export const NavBar = ({ title, theme, onToggleTheme }: NavBarProps) => (
   <div className="bg-base-100 shadow-sm flex flex-col">
@@ -43,11 +47,21 @@ export const NavBar = ({ title, theme, onToggleTheme }: NavBarProps) => (
     </div>
     <div className="flex justify-center items-center p-2">
     <nav className="flex gap-4">
-      <Link to="/">Home</Link>
-      <Link to="/setup">Setup</Link>
-      <Link to="/play">Play</Link>
-      <Link to="/leaderboard">Leaderboard</Link>
-      <Link to="/about">About</Link>
+      <NavLink to="/" className={linkClassName}>
+        Home
+      </NavLink>
+      <NavLink to="/setup" className={linkClassName}>
+        Setup
+      </NavLink>
+      <NavLink to="/play" className={linkClassName}>
+        Play
+      </NavLink>
+      <NavLink to="/leaderboard" className={linkClassName}>
+        Leaderboard
+      </NavLink>
+      <NavLink to="/about" className={linkClassName}>
+        About
+      </NavLink>
     </nav>
     </div>
   </div>
