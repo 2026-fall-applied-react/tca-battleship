@@ -22,8 +22,11 @@ export type LeaderboardEntry = {
     player: string
 }
 
+export interface GameResult {
+    winner: string;
+    players: string[];
+}
 
-    export interface GameResult {
-        winner: string;
-        players: string[];
-    };
+export type CellState = 'empty' | 'hit' | 'miss' | 'sunk';
+
+export type Grid = CellState[];

@@ -11,7 +11,6 @@ import type { GameResult } from '../types.ts';
             players: [
                 "Zack",
                 "Bryson",
-                "Tom",
             ],
         },
         {
@@ -19,7 +18,6 @@ import type { GameResult } from '../types.ts';
             players: [
                 "Bryson",
                 "Tom",
-                "Suzzie",
             ],
         },
         {

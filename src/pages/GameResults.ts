@@ -2,13 +2,6 @@
 import type { LeaderboardEntry, GameResult } from "../types";
 
 
-//types
-
-
-
-
-
-
 //Public funcs
 
 export const getLeaderboard = (
