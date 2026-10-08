@@ -15,12 +15,13 @@ export const Setup = () => {
 
         onAddPlayer(trimmed);
         setPlayerName('');
-
+        // I think this method of initiating a game is incorrect. 
         if (isFirstPlayer) {
             nav('/play');
         }
     };
 
+    // Function to clear local storage and refresh the page, remove after testing
     const handleClearAndRefresh = () => {
         localStorage.clear();
         // localStorage.removeItem('tca-battleship:grid');
