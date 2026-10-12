@@ -35,6 +35,9 @@ export const LeaderboardProp = ({ leaderboard, setTitle }: LeaderboardProps) => 
                     <h2 className="card-title ml-3 mt-3">
                         Leaderboard
                     </h2>
+                    {
+                        
+                    }
                     <div className="overflow-x-auto">
                         <table className="table table-zebra">
                             <thead>
