@@ -1,8 +1,7 @@
 
 import { LeaderboardProp } from './Leaderboard.tsx'
 
-import { getLeaderboard } from './GameResults.ts'
-import type { GameResult } from '../types.ts';
+import { type GameResult, getLeaderboard } from '../types.ts';
 
 
   const dummyGameResults: GameResult[] = [

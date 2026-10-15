@@ -2,7 +2,7 @@ import type { Grid, Player } from './types';
 
 const PLAYERS_STORAGE_KEY = 'tca-battleship:players';
 const GRID_STORAGE_KEY = 'tca-battleship:grid';
-
+//saved players key 'tca-battleship:players'
 export const loadPlayers = (): Player[] => {
     const raw = localStorage.getItem(PLAYERS_STORAGE_KEY);
     if (raw === null) return [];
@@ -18,6 +18,7 @@ export const savePlayers = (players: Player[]): void => {
     localStorage.setItem(PLAYERS_STORAGE_KEY, JSON.stringify(players));
 };
 
+//saved grid key 'tca-battleship:grid'
 export const loadGrid = (): Grid | null => {
     const raw = localStorage.getItem(GRID_STORAGE_KEY);
     if (raw === null) return null;

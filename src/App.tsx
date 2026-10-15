@@ -11,10 +11,9 @@ import { Play } from './pages/Play.tsx'
 import { Setup } from './pages/Setup.tsx'
 import { PlayerDetail } from './pages/PlayerDetails.tsx'
 import { LeaderboardProp } from './pages/Leaderboard.tsx'
-import { APP_TITLE, type GameResult, type Player } from "./types";
+import { APP_TITLE, type GameResult, type Player, getLeaderboard } from "./types";
 import { loadPlayers, savePlayers } from './storage.ts'
 import { Layout } from './components/Layout.tsx'
-import { getLeaderboard } from './pages/GameResults.ts'
 
   const THEME_STORAGE_KEY = 'tca-battleship:theme'
 
