@@ -1,12 +1,81 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router';
 import type { AppOutletContext } from '../types';
 
-export const Setup = () => {
+type SetupProps = {
+    setTitle: (t: string) => void;
+    previousPlayers: string[];
+    setCurrentPlayers: (players: string[]) => void;
+};
+
+export const Setup = ({ setTitle, previousPlayers, setCurrentPlayers }: SetupProps) => {
+     useEffect(
+        () => setTitle("Setup"),
+        [],
+    );
     const nav = useNavigate();
     const { players, onAddPlayer } = useOutletContext<AppOutletContext>();
     const [playerName, setPlayerName] = useState('');
 
+    const [availablePlayers, setAvailablePlayers] = useState(
+        previousPlayers.map(
+            x => (
+                {
+                    name: x,
+                    checked: false,
+                }
+            )
+        )
+    );
+    const chosenPlayerCount = availablePlayers.filter(
+        x => x.checked
+    ).length;
+    
+    const validateAndAdd = () => {
+
+        // check for dupe names
+        const dupe = availablePlayers.find(
+            x => x.name.toUpperCase() === newPlayerName.toUpperCase()
+        );
+
+        // if dupe, don't add, rather just check
+        // if (dupe) ...
+
+        // if not a dupe, add it, already checked since likely
+        // in front of user, ready to play
+        //  else (...)
+
+        setAvailablePlayers(
+            prev => [
+                // handle dupes by just checking them
+                ...prev.map(
+                    x => x === dupe
+                        ? {
+                            name: x.name,
+                            checked: true,
+                        }
+                        : x
+                ),
+                // now add non dupes
+                ...(
+                    dupe
+                        ? []
+                        : [
+                            {
+                                name: newPlayerName,
+                                checked: true,
+                            }
+                        ]
+                ),
+            ]
+        );
+
+        setNewPlayerName(
+            ""
+        );
+    };
+    
+    const [newPlayerName, setNewPlayerName] = useState("");
     const addPlayer = () => {
         const trimmed = playerName.trim();
         if (trimmed === '') return;

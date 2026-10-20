@@ -1,4 +1,15 @@
+import { durationFormatter } from "human-readable";
 
+const formatGameDuration = durationFormatter<string>();
+const formatLastPlayed = durationFormatter<string>(
+    {
+        allowMultiples: [
+            "y",
+            "mo",
+            "d",
+        ]
+    }
+);
 
 //interfaces
 export interface Player {
@@ -19,6 +30,8 @@ export interface AppOutletContext {
 export interface GameResult {
     winner: string;
     players: string[];
+    start: string;
+    end: string;
 }
 
 
@@ -30,12 +43,25 @@ export type LeaderboardEntry = {
     player: string
 }
 
+export type GeneralFacts = {
+    lastPlayed: string;
+    totalGames: number;
+    shortestGame: string;
+    longestGame: string;
+};
+
+export type GameDurationEntry = {
+    players: number;
+    games: number;
+    avg: string;
+};
+
 export type CellState = 'empty' | 'hit' | 'miss' | 'sunk';
 
 export type Grid = CellState[];
 
 
-//public constants
+//public funcs
 
 export const APP_TITLE = "Battleship Companion";
 
@@ -66,8 +92,96 @@ export const getLeaderboard = (
             )
         );
 
+export const getGeneralFacts = (
+    games: GameResult[],
+): GeneralFacts => {
 
-//Helper funcs
+    // bail early if no game results
+    if (
+        games.length === 0
+    ) {
+        return (
+            {
+                lastPlayed: "N/A",
+                totalGames: 0,
+                shortestGame: "N/A",
+                longestGame: "N/A",
+            }
+        );
+    }
+
+    const nowForCalcs = Date.now();
+
+    const gamesLastPlayedInMs = games.map(
+        x => nowForCalcs - Date.parse(x.end)
+    );
+
+    const mostRecentGameInMs = Math.min(
+        ...gamesLastPlayedInMs
+    );
+
+    const gameDurationsInMs = games.map(
+        x => Date.parse(x.end) - Date.parse(x.start)
+    );
+
+    return (
+        {
+            lastPlayed: `${formatLastPlayed(mostRecentGameInMs)} ago`,
+            totalGames: games.length,
+            shortestGame: formatGameDuration(
+                Math.min(
+                    ...gameDurationsInMs,
+                ),
+            ),
+            longestGame: formatGameDuration(
+                Math.max(
+                    ...gameDurationsInMs,
+                ),
+            ),
+        }
+    );
+};
+
+export const getGameDurations = (
+    games: GameResult[],
+): GameDurationEntry[] => games
+
+    // unique player counts
+    .map(
+        x => x.players.length
+    )
+    .filter(
+        (x, i, a) => i === a.indexOf(x)
+    )
+
+    // sorted 1 - n
+    .sort(
+        (a, b) => a - b
+    )
+
+    .map(
+        playerCount => {
+            const durationsInMs = games
+                .filter(
+                    x => x.players.length === playerCount
+                )
+                .map(
+                    x => Date.parse(x.end) - Date.parse(x.start)
+                );
+
+            return {
+                players: playerCount,
+                games: durationsInMs.length,
+                avg: formatGameDuration(
+                    durationsInMs.reduce(
+                        (acc, x) => acc + x,
+                        0,
+                    ) / durationsInMs.length
+                ),
+            };
+        }
+    )
+;
 
     export const getLeaderboarEntry = (
         games: GameResult[],

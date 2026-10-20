@@ -11,7 +11,7 @@ import { Play } from './pages/Play.tsx'
 import { Setup } from './pages/Setup.tsx'
 import { PlayerDetail } from './pages/PlayerDetails.tsx'
 import { LeaderboardProp } from './pages/Leaderboard.tsx'
-import { APP_TITLE, type GameResult, type Player, getLeaderboard } from "./types";
+import { APP_TITLE, type GameResult, type Player,  getGameDurations, getGeneralFacts, getLeaderboard, getPreviousPlayers } from "./types";
 import { loadPlayers, savePlayers } from './storage.ts'
 import { Layout } from './components/Layout.tsx'
 
@@ -111,18 +111,31 @@ const App = () => {
           <Route element={<Layout title={title} theme={theme} onToggleTheme={toggleTheme} players={players} onAddPlayer={addPlayer} />}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/leaderboard" element={<LeaderboardProp leaderboard={getLeaderboard(gameResults)} setTitle={setTitle} />} />
-            <Route
-                            path="/play"
-                            element={
-                                <Play
-                                    addNewGameResult={
-                                        addNewGameResult
-                                    }
-                                />
-                            }
-                        />
-            <Route path="/setup" element={<Setup />} />
+            <Route path="/leaderboard" element={<LeaderboardProp leaderboard={getLeaderboard(gameResults)} setTitle={setTitle} gameDurations={getGameDurations(gameResults)} generalFacts={getGeneralFacts(gameResults)} />} />
+            <Route path="/play" element={<Play
+                  addNewGameResult={
+                    addNewGameResult
+                  }
+                  setTitle={
+                    setTitle
+                  }
+                  currentPlayers={
+                    currentPlayers
+                  }
+                />
+              }
+            />
+            <Route path="/setup" element={<Setup  
+                  setTitle={
+                    setTitle
+                  }
+                  previousPlayers={
+                    getPreviousPlayers(gameResults)
+                  }
+                  setCurrentPlayers={
+                    setCurrentPlayers
+                  }
+                />} />
             <Route path="/player/:id" element={<PlayerDetail />} />
           
           </Route>

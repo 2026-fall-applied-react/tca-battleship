@@ -10,16 +10,20 @@ const GRID_SIZE = 10;
 const makeEmptyGrid = (): Grid => Array<CellState>(GRID_SIZE * GRID_SIZE).fill('empty');
 
 type PlayProps = {
-    addNewGameResult : (r : GameResult) => void
-}
+    addNewGameResult : (r : GameResult) => void;
+    setTitle: (t: string) => void;
+    currentPlayers: string[];
+};
 
-export const Play = ({ addNewGameResult }: PlayProps) => {
+export const Play = ({ addNewGameResult, setTitle, currentPlayers }: PlayProps) => {
     useEffect(
-        () => {
-        },
-
-        []
-    )
+        () => setTitle("Play"),
+        [],
+    );
+    
+    const [startTimestamp] = useState(
+        new Date().toISOString()
+    );
     const nav = useNavigate();
     const [grid, setGrid] = useState<Grid>(() => loadGrid() ?? makeEmptyGrid());
 
@@ -42,20 +46,23 @@ export const Play = ({ addNewGameResult }: PlayProps) => {
 
             <BattleshipGrid grid={grid} onCellClick={handleCellClick} />
             <div className="flex justify-center items-center p-2">
-            <button
-                className="btn btn-soft btn-lg mt-3 w-full lg:w-64"
-                onClick={
-                    () => {
-                        addNewGameResult({
-                            winner: "Bryson",
-                            players: ["Bryson", "Tom"],
-                        })
-                        nav('/leaderboard');
-                    }
-                }
-            >
-                Game Over
-            </button>
+                {currentPlayers.map((x) => (
+                    <button
+                        key={x}
+                        className="btn btn-soft btn-lg mt-3 w-full lg:w-64"
+                        onClick={() => {
+                            addNewGameResult({
+                                winner: x,
+                                players: currentPlayers,
+                                start: startTimestamp,
+                                end: new Date().toISOString(),
+                            });
+                            nav(-2);
+                        }}
+                    >
+                        {x} Won
+                    </button>
+                ))}
             </div>
         </div>
     )
