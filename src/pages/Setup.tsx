@@ -175,7 +175,7 @@ export const Setup: React.FC<SetupProps> = ({
                 {
                     readyToPlay
                         ? `Play ${chosenPlayers[0]} vs ${chosenPlayers[1]}`
-                        : "Choose 2 players below"
+                        : "Choose 2 players"
                 }
             </button>
             {

@@ -1,5 +1,5 @@
-import { FLEET } from '../types';
-import type { FleetStatus, ShipId } from '../types';
+import { FLEET } from '../GameResults';
+import type { FleetStatus, ShipId } from '../GameResults';
 
 type FleetTrackerProps = {
     fleetStatus: FleetStatus;

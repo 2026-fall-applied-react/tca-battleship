@@ -1,5 +1,5 @@
 import { GRID_SIZE } from './gridLogic';
-import type { Grid, ShipDef } from './types';
+import type { Grid, ShipDef } from './GameResults';
 
 // Both ways a ship can lie, as [rowStep, colStep]:
 // [0, 1] = left to right, [1, 0] = top to bottom.

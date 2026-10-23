@@ -1,5 +1,5 @@
-import { GRID_SIZE, getCoordinateLabel } from '../gridLogic';
-import type { CellState, Grid } from '../types';
+import { GRID_SIZE, getCoordinateLabel,  } from '../gridLogic';
+import type { CellState, Grid } from '../GameResults';
 
 type BattleshipGridProps = {
     grid: Grid;

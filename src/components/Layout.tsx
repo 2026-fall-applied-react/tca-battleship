@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router';
-import type { Theme } from '../types';
+import type { Theme } from '../GameResults';
 
 type LayoutProps = {
     title: string;

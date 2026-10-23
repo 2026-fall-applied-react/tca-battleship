@@ -10,10 +10,9 @@ import { Setup } from './pages/Setup'
 import { Play } from './pages/Play'
 import { PlayerDetail } from './pages/PlayerDetail'
 import { Layout } from './components/Layout'
-import { getGeneralFacts, getLeaderboard, getPreviousPlayers, type GameResult } from './GameResults'
+import { getGeneralFacts, getLeaderboard, getPreviousPlayers, type GameResult, type FleetStatus, type Grid, type ShipId, type ShotLogEntry, type Theme  } from './GameResults'
 import { cycleCell, makeEmptyGrid, makeInitialFleetStatus, nextCellState } from './gridLogic'
 import { useLocalStorageState } from './hooks/useLocalStorageState'
-import type { FleetStatus, Grid, ShipId, ShotLogEntry, Theme } from './types'
 
 // Sample games 
 const dummyGameResults: GameResult[] = [

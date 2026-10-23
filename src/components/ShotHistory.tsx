@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { getCoordinateLabel } from '../gridLogic';
-import type { ShotLogEntry } from '../types';
+import type { ShotLogEntry } from '../GameResults';
 
 type ShotHistoryProps = {
     shotLog: ShotLogEntry[];

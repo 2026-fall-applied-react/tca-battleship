@@ -4,8 +4,8 @@ import { BattleshipGrid, GridLegend } from "../components/BattleshipGrid";
 import { FleetTracker } from "../components/FleetTracker";
 import { ShotHistory } from "../components/ShotHistory";
 import { computeHeatmap } from "../heatmap";
-import { FLEET } from "../types";
-import type { FleetStatus, Grid, ShipId, ShotLogEntry } from "../types";
+import { FLEET } from "../GameResults";
+import type { FleetStatus, Grid, ShipId, ShotLogEntry } from "../GameResults";
 
 type PlayProps = {
     currentPlayers: string[];

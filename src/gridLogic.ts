@@ -1,5 +1,5 @@
-import { FLEET } from './types';
-import type { CellState, FleetStatus, Grid } from './types';
+import { FLEET } from './GameResults';
+import type { CellState, FleetStatus, Grid } from './GameResults';
 
 
 export const GRID_SIZE = 10;
