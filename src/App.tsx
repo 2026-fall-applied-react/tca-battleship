@@ -103,8 +103,7 @@ const App = () => {
   };
 
   // A click on the board: change that one cell, and add a line to the shot
-  // history. [...shotLog, entry] makes a new array (push would change the
-  // old one, and React wouldn't notice). but is there a better way to do this? I don't want to mutate the old array, but I also don't want to copy the whole thing every time. Maybe a linked list? Or a ring buffer? Or just keep the last 100 shots or something?
+  // history. [...shotLog, entry] makes a new array . but is there a better way to do this? I don't want to mutate the old array, but I also don't want to copy the whole thing every time. Maybe a linked list? Or a ring buffer? Or just keep the last 100 shots or something?
   const clickCell = (row: number, col: number) => {
     const index = row * 10 + col;
 
@@ -215,6 +214,7 @@ const App = () => {
                 fleetStatus={
                   fleetStatus
                 }
+                //annoying, delayed? but how?
                 shotLog={
                   shotLog
                 }
