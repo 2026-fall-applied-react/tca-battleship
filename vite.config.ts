@@ -7,4 +7,8 @@ export default defineConfig({
     tailwindcss(),
     react(),
   ],
+  base: "/tca-battleship/",
+  build: {
+    outDir: "docs",
+  },
 })
