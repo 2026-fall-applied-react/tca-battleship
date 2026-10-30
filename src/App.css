@@ -1,9 +1,12 @@
-/* Theme: same approach as the Flip 7 app. daisyUI picks the light or dark
-   theme from the browser's own setting (no toggle button), and every color
-   below is a daisyUI "semantic" color: primary, base-200, error, and so on. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap');
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: battleship-light --default, battleship-dark --prefersdark;
+}
+
+@theme {
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, serif;
 }
 
 @plugin "daisyui/theme" {
@@ -11,25 +14,25 @@
   default: true;
   prefersdark: false;
   color-scheme: light;
-  --color-base-100: oklch(99% 0.008 245);
-  --color-base-200: oklch(94% 0.025 245);
-  --color-base-300: oklch(88% 0.035 245);
-  --color-base-content: oklch(27% 0.04 290);
-  --color-primary: oklch(58% 0.17 250);
-  --color-primary-content: oklch(98% 0.01 250);
-  --color-secondary: oklch(65% 0.12 195);
-  --color-secondary-content: oklch(20% 0.04 195);
-  --color-accent: oklch(76% 0.15 85);
-  --color-accent-content: oklch(25% 0.05 85);
-  --color-neutral: oklch(32% 0.07 290);
-  --color-neutral-content: oklch(96% 0.02 90);
-  --color-info: oklch(65% 0.13 230);
-  --color-info-content: oklch(98% 0.01 230);
-  --color-success: oklch(68% 0.16 150);
-  --color-success-content: oklch(20% 0.05 150);
-  --color-warning: oklch(85% 0.17 90);
-  --color-warning-content: oklch(25% 0.06 90);
-  --color-error: oklch(60% 0.22 25);
+  --color-base-100: #faf7f2;
+  --color-base-200: #efebe3;
+  --color-base-300: #e2ddd0;
+  --color-base-content: #201e1a;
+  --color-primary: #a8501f;
+  --color-primary-content: #faf7f2;
+  --color-secondary: #7a3c1a;
+  --color-secondary-content: #faf7f2;
+  --color-accent: #c8622a;
+  --color-accent-content: #201e1a;
+  --color-neutral: #3a3631;
+  --color-neutral-content: #faf7f2;
+  --color-info: oklch(55% 0.12 240);
+  --color-info-content: oklch(98% 0.01 240);
+  --color-success: oklch(55% 0.13 150);
+  --color-success-content: oklch(98% 0.01 150);
+  --color-warning: oklch(80% 0.15 85);
+  --color-warning-content: #201e1a;
+  --color-error: oklch(52% 0.2 25);
   --color-error-content: oklch(98% 0.01 25);
   --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
@@ -44,26 +47,26 @@
   default: false;
   prefersdark: true;
   color-scheme: dark;
-  --color-base-100: oklch(32% 0.05 250);
-  --color-base-200: oklch(39% 0.07 250);
-  --color-base-300: oklch(46% 0.08 250);
-  --color-base-content: oklch(95% 0.02 90);
-  --color-primary: oklch(76% 0.14 245);
-  --color-primary-content: oklch(18% 0.04 250);
-  --color-secondary: oklch(75% 0.12 195);
-  --color-secondary-content: oklch(18% 0.04 195);
-  --color-accent: oklch(82% 0.14 85);
-  --color-accent-content: oklch(22% 0.05 85);
-  --color-neutral: oklch(25% 0.05 290);
-  --color-neutral-content: oklch(95% 0.02 90);
-  --color-info: oklch(72% 0.13 230);
-  --color-info-content: oklch(20% 0.04 230);
-  --color-success: oklch(75% 0.16 150);
-  --color-success-content: oklch(20% 0.05 150);
-  --color-warning: oklch(86% 0.16 90);
-  --color-warning-content: oklch(25% 0.06 90);
-  --color-error: oklch(68% 0.2 25);
-  --color-error-content: oklch(20% 0.05 25);
+  --color-base-100: #0e0d0b;
+  --color-base-200: #151410;
+  --color-base-300: #2a2925;
+  --color-base-content: #f0ede8;
+  --color-primary: #c8622a;
+  --color-primary-content: #0e0d0b;
+  --color-secondary: #7a3c1a;
+  --color-secondary-content: #f0ede8;
+  --color-accent: #e08a55;
+  --color-accent-content: #0e0d0b;
+  --color-neutral: #4a4740;
+  --color-neutral-content: #f0ede8;
+  --color-info: oklch(72% 0.12 240);
+  --color-info-content: oklch(18% 0.04 240);
+  --color-success: oklch(72% 0.14 150);
+  --color-success-content: oklch(18% 0.05 150);
+  --color-warning: oklch(82% 0.15 85);
+  --color-warning-content: #0e0d0b;
+  --color-error: oklch(62% 0.21 25);
+  --color-error-content: oklch(98% 0.01 25);
   --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
   --radius-box: 0.5rem;
@@ -71,3 +74,8 @@
   --depth: 0;
   --noise: 0;
 }
+
+[data-theme="battleship-light"] { --water: #3f7fb5; }
+[data-theme="battleship-dark"] { --water: #5b97cf; }
+
+h1, h2, .font-serif { font-family: var(--font-serif); font-weight: 400; }

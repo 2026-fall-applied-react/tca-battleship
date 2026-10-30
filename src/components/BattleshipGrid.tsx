@@ -9,7 +9,7 @@ type BattleshipGridProps = {
 
 // Each state gets a color AND a symbol, so it's never color alone.
 const cellColor: Record<CellState, string> = {
-    empty: 'bg-primary/80',            // was 'bg-base-200'
+    empty: 'bg-[color-mix(in_oklab,var(--water)_10%,var(--color-base-100))]', 
     hit: 'bg-error text-error-content',
     miss: 'bg-white text-slate-600',   // was 'bg-info/40'
     sunk: 'bg-neutral text-neutral-content',
@@ -62,7 +62,7 @@ export const GridLegend: React.FC = () => (
                 className="w-12 h-6 rounded-sm border border-base-300"
                 //I'm not sure if this is the best way to do a gradient in daisyUI, but it works and it's not too bad.
                 style={{
-                    backgroundImage: 'linear-gradient(to right, color-mix(in oklab, var(--color-primary) 10%, var(--color-base-100)), color-mix(in oklab, var(--color-primary) 80%, var(--color-base-100)))',
+                    backgroundImage: 'linear-gradient(to right, color-mix(in oklab, var(--water) 10%, var(--color-base-100)), color-mix(in oklab, var(--water) 70%, var(--color-base-100)))',
                 }}
             />
             Deeper blue = likelier hit spot
@@ -101,7 +101,8 @@ export const BattleshipGrid: React.FC<BattleshipGridProps> = ({
                                 className={`w-7 h-7 sm:w-9 sm:h-9 rounded-sm border border-base-300 cursor-pointer ${cellColor[cell]}`}
                                 style={
                                     cell === 'empty'
-                                        ? { backgroundColor: `color-mix(in oklab, var(--color-primary) ${bluePercent}%, var(--color-base-100))` }
+                                        ? { backgroundColor: `color-mix(in oklab, var(--water) ${bluePercent}%, var(--color-base-100))` }
+
                                         : undefined
                                 }
                                 onClick={() => onCellClick(row, col)}

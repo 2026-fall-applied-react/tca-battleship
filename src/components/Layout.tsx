@@ -23,7 +23,7 @@ export const Layout: React.FC<LayoutProps> = ({
             {/* three columns: empty | title | toggle, so the title stays centered */}
             <div className="grid grid-cols-[1fr_auto_1fr] items-center px-3 pt-3">
                 <span />
-                <p className="text-2xl sm:text-3xl font-bold text-center">{title}</p>
+                <p className="text-2xl sm:text-3xl font-serif text-center">{title}</p>
 
                 {/* daisyUI "swap": shows one icon when the box is unchecked
                     and the other when it's checked. Checked = dark. */}

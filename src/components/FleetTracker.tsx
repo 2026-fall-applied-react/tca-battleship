@@ -16,7 +16,7 @@ export const FleetTracker: React.FC<FleetTrackerProps> = ({
     onToggleSunk,
 }) => (
     <div className="w-full sm:w-64">
-        <h2 className="text-xl font-bold text-primary pb-2">Fleet</h2>
+        <h2 className="text-xl font-bold text-primary font-serif pb-2">Fleet</h2>
         {
             FLEET.map(
                 ship => {

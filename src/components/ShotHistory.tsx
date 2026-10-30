@@ -26,7 +26,7 @@ export const ShotHistory: React.FC<ShotHistoryProps> = ({
 
     return (
         <div className="w-full sm:w-64">
-            <h2 className="text-xl font-bold text-primary pb-2">Shot history</h2>
+            <h2 className="text-xl font-bold text-primary font-serif pb-2">Shot history</h2>
             {
                 newestFirst.length === 0
                     ? <p className="px-3">No shots yet.</p>

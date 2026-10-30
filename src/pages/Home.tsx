@@ -50,7 +50,7 @@ export const Home: React.FC<HomeProps> = ({
                 Setup a Game
             </button>
             <section className="border-t-2 border-primary/40 py-3">
-                <h2 className="text-xl font-bold text-primary px-3 pb-2">
+                <h2 className="text-xl font-bold text-primary font-serif px-3 pb-2">
                     General
                 </h2>
                 <div className="overflow-x-auto">
@@ -77,7 +77,7 @@ export const Home: React.FC<HomeProps> = ({
                 </div>
             </section>
             <section className="border-t-2 border-primary/40 py-3">
-                <h2 className="text-xl font-bold text-primary px-3 pb-2">
+                <h2 className="text-xl font-bold text-primary font-serif px-3 pb-2">
                     Leaderboard
                 </h2>
                 {
@@ -125,7 +125,7 @@ export const Home: React.FC<HomeProps> = ({
                 }
             </section>
             <section className="border-t-2 border-primary/40 py-3">
-                <h2 className="text-xl font-bold text-primary px-3 pb-2">
+                <h2 className="text-xl font-bold text-primary font-serif px-3 pb-2">
                     Recent Games
                 </h2>
                 {

@@ -84,12 +84,12 @@ export const Play: React.FC<PlayProps> = ({
         <div
             className="flex flex-col"
         >
-            <h2 className="text-xl font-bold text-primary pb-3">
+            <h2 className="text-xl font-bold text-primary font-serif pb-3">
                 {currentPlayers.join(" vs ")}
             </h2>
             <div className="flex flex-wrap gap-8">
                 <div>
-                    <h2 className="text-xl font-bold text-primary pb-2">Your shots</h2>
+                    <h2 className="text-xl font-bold text-primary font-serif pb-2">Your shots</h2>
                     <BattleshipGrid
                         grid={grid}
                         onCellClick={onCellClick}
