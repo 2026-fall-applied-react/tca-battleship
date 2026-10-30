@@ -13,6 +13,7 @@ import { Layout } from './components/Layout'
 import { getGeneralFacts, getLeaderboard, getPreviousPlayers, type GameResult, type FleetStatus, type Grid, type ShipId, type ShotLogEntry, type Theme  } from './GameResults'
 import { cycleCell, makeEmptyGrid, makeInitialFleetStatus, nextCellState } from './gridLogic'
 import { useLocalStorageState } from './hooks/useLocalStorageState'
+import { useLocalForageState } from './hooks/useLocalForageState'
 
 // Sample games 
 const dummyGameResults: GameResult[] = [
@@ -65,12 +66,12 @@ const getBrowserTheme = (): Theme => (
 const App = () => {
 
   // hooks
-
+  
   const [title, setTitle] = useState(APP_TITLE);
 
   // 'light' or 'dark'. Starts as the browser's setting, then remembers
   // whatever the toggle button last chose.
-  const [theme, setTheme] = useLocalStorageState<Theme>(KEYS.theme, getBrowserTheme);
+  const [theme, setTheme, themeLoaded] = useLocalForageState<Theme>(KEYS.theme, getBrowserTheme);
 
   // finished games (this is what the leaderboard is built from)
   const [gameResults, setGameResults] = useLocalStorageState<GameResult[]>(KEYS.gameResults, dummyGameResults);
@@ -147,7 +148,20 @@ const App = () => {
     setCurrentPlayers([]);
   };
 
-  
+  useEffect(
+  () => {
+    if (themeLoaded) {
+      document.documentElement.setAttribute('data-theme', `battleship-${theme}`)
+    }
+  },
+  [theme, themeLoaded],
+);
+
+// ...after all the hooks, just before the final return:
+if (!themeLoaded) {
+  return null
+}
+
   return (
     <HashRouter>
       <Routes>

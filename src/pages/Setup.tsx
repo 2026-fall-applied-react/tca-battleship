@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import localforage from "localforage";
 
 type SetupProps = {
     previousPlayers: string[];
@@ -186,7 +187,7 @@ export const Setup: React.FC<SetupProps> = ({
                         onClick={
                             () => {
                                 localStorage.clear();
-                                window.location.reload();
+                                localforage.clear().then(() => window.location.reload());
                             }
                         }
                     >
