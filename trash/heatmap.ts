@@ -1,8 +1,8 @@
 
 type Shot = {
-    game: number;         // which dummy game this shot happened in
-    player: string;       // who took the shot
-    coordinate: string;   // Battleship-style grid reference, e.g. "C5"
+    game: number;
+    player: string;
+    coordinate: string;
     result: "hit" | "miss";
 };
 
@@ -28,8 +28,8 @@ const dummyShots: Shot[] = [
 ];
 
 type Coordinate = {
-    col: number; // 0-based: A -> 0, B -> 1, ...
-    row: number; // 0-based: "1" -> 0, "2" -> 1, ...
+    col: number; 
+    row: number; 
 };
 
 

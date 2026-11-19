@@ -40,10 +40,8 @@ export const FLEET: ShipDef[] = [
 
 export type ShipStatus = 'afloat' | 'sunk';
 
-// One status per ship. Record<ShipId, ShipStatus> means every ship must have an entry
 export type FleetStatus = Record<ShipId, ShipStatus>;
 
-// One line of the shot history: where you fired, what you marked, and when.
 export type ShotLogEntry = {
     row: number;
     col: number;
@@ -99,13 +97,9 @@ export const getLeaderboard = (
     .sort(
         (a, b) => (
             a.avg !== b.avg
-                // if diff avgs, sort highest avg first
                 ? b.avg - a.avg
                 : a.wins === 0 && b.wins === 0
-                    // if tied avg, and zero wins, rank player with more games without a win lower
                     ? (a.wins + a.losses) - (b.wins + b.losses)
-                    // if tied avg, and some wins, rank player with more games higher, 
-                    // they maintained that avg for more games so higher ranked
                     : (b.wins + b.losses) - (a.wins + a.losses)
         )
     )
@@ -115,7 +109,6 @@ export const getGeneralFacts = (
     games: GameResult[],
 ): GeneralFacts => {
 
-    // bail early if no game results
     if (
         games.length === 0
     ) {
@@ -206,19 +199,16 @@ export const getPreviousPlayers = (
     games: GameResult[],
 ): string[] => games
 
-    // just the players as a string array
     .flatMap(
         x => x.players
     )
 
-    // unique players
     .filter(
         (x, i, a) => i === a.findIndex(
             y => y === x
         )
     )
 
-    // sorted alphabetically
     .sort(
         (a, b) => a.localeCompare(b)
     )

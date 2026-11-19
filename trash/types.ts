@@ -1,9 +1,10 @@
 
 
 export type CellState = 'empty' | 'hit' | 'miss' | 'sunk';
-
+// 
 // The 10x10 board as ONE flat list of 100 cells, not a list of rows.
 // The cell at (row, col) is at index row * 10 + col.
+// 
 export type Grid = CellState[];
 
 export type ShipId = 'carrier' | 'battleship' | 'cruiser' | 'submarine' | 'destroyer';
@@ -24,10 +25,9 @@ export const FLEET: ShipDef[] = [
 
 export type ShipStatus = 'afloat' | 'sunk';
 
-// One status per ship. Record<ShipId, ShipStatus> means every ship must have an entry
 export type FleetStatus = Record<ShipId, ShipStatus>;
 
-// One line of the shot history: where you fired, what you marked, and when.
+
 export type ShotLogEntry = {
     row: number;
     col: number;

@@ -43,7 +43,6 @@ export const Play: React.FC<PlayProps> = ({
     // calculated state...
     //
 
-    // the ships still afloat
     const remainingShips = useMemo(
         () => FLEET.filter(
             x => fleetStatus[x.id] === 'afloat'
@@ -63,11 +62,11 @@ export const Play: React.FC<PlayProps> = ({
     // return jsx...
     //
 
-    // nobody is playing yet (or the last game just ended)
     if (currentPlayers.length === 0) {
         return (
             <div className="flex flex-col">
                 <p>No game in progress.</p>
+                
                 <button
                     className="btn btn-primary btn-lg mt-3 w-full lg:w-64"
                     onClick={
@@ -90,6 +89,7 @@ export const Play: React.FC<PlayProps> = ({
             <div className="flex flex-wrap gap-8">
                 <div>
                     <h2 className="text-xl font-bold text-primary font-serif pb-2">Your shots</h2>
+
                     <BattleshipGrid
                         grid={grid}
                         onCellClick={onCellClick}
@@ -97,6 +97,7 @@ export const Play: React.FC<PlayProps> = ({
                     />
                     <GridLegend />
                 </div>
+
                 <div className="flex flex-col gap-6">
                     <FleetTracker
                         fleetStatus={fleetStatus}
@@ -107,6 +108,7 @@ export const Play: React.FC<PlayProps> = ({
                     />
                 </div>
             </div>
+
             <div className="flex flex-col mt-6">
                 {
                     currentPlayers.map(

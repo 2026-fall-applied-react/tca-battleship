@@ -49,6 +49,7 @@ export const Home: React.FC<HomeProps> = ({
             >
                 Setup a Game
             </button>
+
             <section className="border-t-2 border-primary/40 py-3">
                 <h2 className="text-xl font-bold text-primary font-serif px-3 pb-2">
                     General
@@ -64,6 +65,7 @@ export const Home: React.FC<HomeProps> = ({
                                 <td>Total games</td>
                                 <th>{generalFacts.totalGames}</th>
                             </tr>
+
                             <tr>
                                 <td>Shortest game</td>
                                 <th>{generalFacts.shortestGame}</th>
@@ -76,6 +78,7 @@ export const Home: React.FC<HomeProps> = ({
                     </table>
                 </div>
             </section>
+
             <section className="border-t-2 border-primary/40 py-3">
                 <h2 className="text-xl font-bold text-primary font-serif px-3 pb-2">
                     Leaderboard
@@ -98,6 +101,7 @@ export const Home: React.FC<HomeProps> = ({
                                             <th>PLAYER</th>
                                         </tr>
                                     </thead>
+                                    {/* // One player's record. The route is "/player/:name" */}
                                     <tbody>
                                         {
                                             lb.map(
@@ -106,6 +110,7 @@ export const Home: React.FC<HomeProps> = ({
                                                         <td>{x.wins}</td>
                                                         <td>{x.losses}</td>
                                                         <td>{x.avg.toFixed(3)}</td>
+                                                        
                                                         <td>
                                                             <Link
                                                                 className="link link-primary"

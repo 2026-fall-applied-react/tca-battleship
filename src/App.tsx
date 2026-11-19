@@ -4,13 +4,17 @@ import {
   Routes,
   Route,
 } from 'react-router'
+
 import { useEffect, useState } from 'react'
+
 import { APP_TITLE, Home } from './pages/Home'
 import { Setup } from './pages/Setup'
 import { Play } from './pages/Play'
 import { PlayerDetail } from './pages/PlayerDetail'
 import { Layout } from './components/Layout'
+
 import { getGeneralFacts, getLeaderboard, getPreviousPlayers, type GameResult, type FleetStatus, type Grid, type ShipId, type ShotLogEntry, type Theme  } from './GameResults'
+
 import { cycleCell, makeEmptyGrid, makeInitialFleetStatus, nextCellState } from './gridLogic'
 import { useLocalStorageState } from './hooks/useLocalStorageState'
 import { useLocalForageState } from './hooks/useLocalForageState'
@@ -83,7 +87,7 @@ const App = () => {
   const [fleetStatus, setFleetStatus] = useLocalStorageState<FleetStatus>(KEYS.fleetStatus, makeInitialFleetStatus);
   const [shotLog, setShotLog] = useLocalStorageState<ShotLogEntry[]>(KEYS.shotLog, []);
 
-  // Tell daisyUI which theme to use. 
+
   useEffect(
     () => document.documentElement.setAttribute('data-theme', `battleship-${theme}`),
     [theme],
@@ -94,7 +98,6 @@ const App = () => {
     current => current === 'light' ? 'dark' : 'light'
   );
 
-  // Setup's "Play" button: remember who is playing and when it started,THIS SUCKED!!!
   const startGame = (players: string[]) => {
     setCurrentPlayers(players);
     setGameStart(new Date().toISOString());
@@ -103,14 +106,14 @@ const App = () => {
     setShotLog([]);
   };
 
-  // A click on the board: change that one cell, and add a line to the shot
-  // history. [...shotLog, entry] makes a new array . but is there a better way to do this? I don't want to mutate the old array, but I also don't want to copy the whole thing every time. Maybe a linked list? Or a ring buffer? Or just keep the last 100 shots or something?
+
   const clickCell = (row: number, col: number) => {
     const index = row * 10 + col;
 
     setGrid(
       grid => cycleCell(grid, index)
     );
+
     setShotLog(
       [
         ...shotLog,
@@ -122,9 +125,9 @@ const App = () => {
         },
       ]
     );
+
   };
 
-  // A ship's "Mark sunk" / "Mark afloat" button
   const toggleSunk = (id: ShipId) => setFleetStatus(
     status => ({
       ...status,
@@ -132,7 +135,6 @@ const App = () => {
     })
   );
 
-  //and then of the 2 players, pass back the winner
   const finishGame = (winner: string) => {
     setGameResults(
       [
@@ -157,7 +159,6 @@ const App = () => {
   [theme, themeLoaded],
 );
 
-// ...after all the hooks, just before the final return:
 if (!themeLoaded) {
   return null
 }

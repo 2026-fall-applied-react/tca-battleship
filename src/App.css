@@ -79,3 +79,19 @@
 [data-theme="battleship-dark"] { --water: #5b97cf; }
 
 h1, h2, .font-serif { font-family: var(--font-serif); font-weight: 400; }
+
+.sonar-ring {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-radius: 9999px;
+  border: 2px solid var(--water);
+  animation: sonar 600ms ease-out forwards;
+}
+@keyframes sonar {
+  from { transform: scale(1);  opacity: 0.9; }
+  to   { transform: scale(40); opacity: 0; }
+}
+/* people who ask their OS for less motion get no animation */
+@media (prefers-reduced-motion: reduce) { .sonar-ring { display: none; } }

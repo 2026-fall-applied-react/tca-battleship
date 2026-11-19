@@ -13,12 +13,6 @@ export const ShotHistory: React.FC<ShotHistoryProps> = ({
     shotLog,
 }) => {
 
-    // The log is stored oldest-first, but we want to show newest-first.
-    // .reverse() changes the array it's called on, so .slice() makes a
-    // copy first. useMemo remembers the reversed copy until shotLog
-    // changes, instead of rebuilding it every time Play re-renders for some
-    // other reason. (With a short list the saving is tiny. It's here to
-    // practice how useMemo works, not because anything was slow.)
     const newestFirst = useMemo(
         () => shotLog.slice().reverse(),
         [shotLog],
@@ -35,8 +29,6 @@ export const ShotHistory: React.FC<ShotHistoryProps> = ({
                             {
                                 newestFirst.map(
                                     x => (
-                                        // timestamp works as the key: two clicks
-                                        // can't land in the same time
                                         <div
                                             key={x.timestamp}
                                             className="flex justify-between px-3 py-1 odd:bg-base-200"

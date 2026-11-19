@@ -7,7 +7,6 @@ type BattleshipGridProps = {
     heatmap: number[];
 };
 
-// Each state gets a color AND a symbol, so it's never color alone.
 const cellColor: Record<CellState, string> = {
     empty: 'bg-[color-mix(in_oklab,var(--water)_10%,var(--color-base-100))]', 
     hit: 'bg-error text-error-content',
@@ -22,7 +21,6 @@ const cellSymbol: Record<CellState, string> = {
     sunk: '■',
 };
 
-// The legend is a small table that explains what the colors and symbols mean.
 const legendItems: { state: CellState; label: string }[] = [
     { state: 'empty', label: 'Not fired at' },
     { state: 'hit', label: 'Hit' },
@@ -45,7 +43,8 @@ export const GridLegend: React.FC = () => (
                     >
                         <span
                             aria-hidden="true"
-                            className={`w-6 h-6 flex items-center justify-center rounded-sm border border-base-300 ${cellColor[x.state]}`}
+                            className={`w-6 h-6 flex items-center justify-center rounded-sm border border-base-300 
+                                ${cellColor[x.state]}`}
                         >
                             {cellSymbol[x.state]}
                         </span>
@@ -55,7 +54,6 @@ export const GridLegend: React.FC = () => (
             )
         }
 
-        {/* the heatmap: light to deep blue, same two blues the squares use */}
         <div className="col-span-2 flex items-center gap-2">
             <span
                 aria-hidden="true"
@@ -70,7 +68,6 @@ export const GridLegend: React.FC = () => (
     </div>
 );
 
-// Draws the board and reports clicks back up through onCellClick.
 
 export const BattleshipGrid: React.FC<BattleshipGridProps> = ({
     grid,

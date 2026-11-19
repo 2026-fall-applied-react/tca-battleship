@@ -1,5 +1,7 @@
 import { NavLink, Outlet } from 'react-router';
 import type { Theme } from '../GameResults';
+import SonarPing from './SonarPing';
+
 
 type LayoutProps = {
     title: string;
@@ -62,6 +64,7 @@ export const Layout: React.FC<LayoutProps> = ({
             </nav>
         </div>
         <div className="p-3">
+            <SonarPing />
             <Outlet />
         </div>
     </>
