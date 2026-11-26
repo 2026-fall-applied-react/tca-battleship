@@ -18,8 +18,9 @@ const SonarPing: React.FC = () => {
             
             setTimeout(() => setPings(prev => prev.filter(p => p.id !== id)), 600)
         }
-        document.addEventListener('click', onClick)
 
+        document.addEventListener('click', onClick)
+        
         return () => document.removeEventListener('click', onClick)
     }, [])
 
